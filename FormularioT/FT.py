@@ -38,14 +38,15 @@ class ModeloTaboa(QAbstractTableModel):
             if fila > 0:
                 xenero = self._datos[fila][2]
                 if xenero == "Muller":
-                    return QColor("#FFC0CB")  # Rosa claro
+                    return QColor("light pink")  # Rosa claro
                 elif xenero == "Home":
-                    return QColor("#ADD8E6")  # Azul claro
+                    return QColor("light blue")  # Azul claro
 
         # 2. Checkbox para valores booleanos
         if isinstance(valor, bool):
             if role == Qt.ItemDataRole.CheckStateRole:
-                return Qt.CheckState.Checked if valor else Qt.CheckState.Unchecked
+                return  Qt.CheckState.Checked if valor else Qt.CheckState.Unchecked
+
             return None
 
         # 3. Texto normal
@@ -110,7 +111,7 @@ class FiestraPrincipal(QMainWindow):
         self.txtDni.setPlaceholderText("Ex: 4444X")
 
         self.cmbXenero = QComboBox()
-        self.cmbXenero.addItems(["Muller", "Home"])
+        self.cmbXenero.addItems(["Muller", "Home", "Outro"])
 
         self.chkFalecido = QCheckBox()
 
@@ -161,7 +162,7 @@ class FiestraPrincipal(QMainWindow):
     def limpar_formulario(self):
         self.txtNome.clear()
         self.txtDni.clear()
-        self.cmbXenero.setCurrentIndex(0)  # Vuelve a "Muller"
+        self.cmbXenero.setCurrentIndex(2)  # Vuelve a "Muller"
         self.chkFalecido.setChecked(False)
         self.txtNome.setFocus()  # Devuelve el cursor al campo Nome
 
